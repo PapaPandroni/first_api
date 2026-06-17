@@ -1,0 +1,13 @@
+[project]
+name = "first-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]>=0.137.1",
+    "pandas>=3.0.3",
+    "sqlalchemy>=2.0.51",
+]
+[tool.fastapi]
+entrypoint = "main:app"
