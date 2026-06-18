@@ -88,17 +88,21 @@ async def search_movies(
     return query.all()
 
 @app.get("/api/v1/movies/title/{movie}", response_model=list[MovieSchema])
-async def get_movies(movie: str):
+async def get_movie_by_title(movie: str):
     movies = session.query(Movie).filter(Movie.movie_title == movie).all()
+    if not movies:
+        raise HTTPException(status_code=404, detail="No movie found with that title")
     return movies
 
 @app.get("/api/v1/movies/id/{id}", response_model=MovieSchema)
-async def get_movies(id: int):
-    movies = session.query(Movie).filter(Movie.id == id).first()
-    return movies
+async def get_movie_by_id(id: int):
+    movie = session.query(Movie).filter(Movie.id == id).first()
+    if movie is None:
+        raise HTTPException(status_code=404, detail="No movie found with that id. Try 0-999")
+    return movie
 
 @app.get("/api/v1/movies", response_model=list[MovieTitle])
-async def get_movies():
+async def get_all_movies():
     movies = session.query(Movie).all()
     return movies
 
