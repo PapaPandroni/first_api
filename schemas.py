@@ -58,3 +58,23 @@ class FamilyFriendly(BaseModel):
     class Config:
         from_attributes = True
 
+class Captivating(BaseModel):
+    id: int
+    movie_title: str
+    pacing_efficiency: int
+    immersive: int
+    impactful: int
+
+class Underrated(BaseModel):
+    id: int
+    movie_title: str
+    originality: int
+    plot_quality_rating: int
+    plot_quality_reasons_for_liking: list[str]
+
+    @field_validator("plot_quality_reasons_for_liking", mode="before")
+    @classmethod
+    def parse_list(cls, v):
+        if isinstance(v, str):
+            return ast.literal_eval(v)
+        return v

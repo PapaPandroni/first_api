@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from database import session
 from models import Movie
-from schemas import MovieSchema, MovieTitle, FamilyFriendly
+from schemas import MovieSchema, MovieTitle, FamilyFriendly, Captivating, Underrated
 
 app = FastAPI()
 
@@ -18,5 +18,13 @@ async def get_movies():
 async def get_family_friendly():
     movies = session.query(Movie).filter(Movie.family_friendly >= 4).all()
     return movies
-    
 
+@app.get("/api/v1/captivating", response_model=list[Captivating])
+async def get_captivating():
+    movies = session.query(Movie).filter(Movie.pacing_efficiency >= 4, Movie.immersive >= 4, Movie.impactful >= 3).all()
+    return movies
+
+@app.get("/api/v1/underrated", response_model=list[Underrated])
+async def get_underrated():
+    movies = session.query(Movie).filter(Movie.originality >= 4, Movie.plot_quality_rating >= 4, Movie.id > 500).all()
+    return movies
