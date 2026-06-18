@@ -104,3 +104,45 @@ class Sound(BaseModel):
 
     class Config:
         from_attributes = True
+
+class FeelGood(BaseModel):
+    id: int
+    movie_title: str
+    overall_feeling: int
+    end_feeling_ending_rating: int
+    end_feeling_structural_adjective: str
+    connected: int
+
+    class Config:
+        from_attributes = True
+
+class Background(BaseModel):
+    id: int
+    movie_title: str
+    cognitive_requirement: int
+    pacing_efficiency: int
+    technical_knowledge_required: int
+    references_contained: int
+    originality: int
+
+    class Config:
+        from_attributes = True
+
+class TrailerMovie(BaseModel):
+    id: int
+    movie_title: str
+    trailer_or_spoiler: int
+
+    class Config:
+        from_attributes = True
+
+class Challenging(BaseModel):
+    id: int
+    movie_title: str
+    technical_knowledge_required: int
+    cognitive_requirement: int
+    references_contained: int
+    originality: int
+
+    class Config:
+        from_attributes = True
