@@ -179,7 +179,7 @@ async def get_challenging():
 
 @app.post("/api/v1/movies/{id}/comments")
 async def add_comment(id: int, comment: str):
-    new_comment = Comment(movie_id = id, coment = comment)
+    new_comment = Comment(movie_id = id, comment = comment)
     session.add(new_comment)
     session.commit()
     return new_comment

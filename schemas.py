@@ -30,6 +30,7 @@ class MovieSchema(BaseModel):
     photosensitivity_warnings : int
     animal_harm : int
     trailer_or_spoiler : int
+    comments: list[CommentSchema] = []
 
     class Config:
         from_attributes = True
@@ -37,6 +38,8 @@ class MovieSchema(BaseModel):
 class MovieTitle(BaseModel):
     id: int
     movie_title: str
+    comments: list[CommentSchema] = []
+    
     class Config:
         from_attributes = True
 
