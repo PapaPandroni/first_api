@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from typing import Optional
 from database import session
-from models import Movie
+from models import Movie, Comment
 from fastapi import HTTPException
 from schemas import MovieSchema, MovieTitle, FamilyFriendly, Captivating, Underrated, Visual, Sound, FeelGood, Background, TrailerMovie, Challenging
 
@@ -176,3 +176,10 @@ async def get_challenging():
         Movie.references_contained >= 4,
         Movie.originality >= 4).all()
     return movies
+
+@app.post("/api/v1/movies/{id}/comments")
+async def add_comment(id: int, comment: str):
+    new_comment = Comment(movie_id = id, coment = comment)
+    session.add(new_comment)
+    session.commit()
+    return new_comment

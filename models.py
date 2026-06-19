@@ -1,5 +1,5 @@
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 
 Base = declarative_base()
 
@@ -34,3 +34,13 @@ class Movie(Base):
     photosensitivity_warnings = Column(Integer)
     animal_harm = Column(Integer)
     trailer_or_spoiler = Column(Integer)
+    comments = relationship("Comment", back_populates="movie")
+
+class Comment(Base):
+    __tablename__ = "comments"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    movie_id = Column(Integer, ForeignKey("movies.id"))
+    comment = Column(String)
+
+    movie = relationship("Movie", back_populates="comments")
+

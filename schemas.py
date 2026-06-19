@@ -146,3 +146,20 @@ class Challenging(BaseModel):
 
     class Config:
         from_attributes = True
+
+class CommentSchema(BaseModel):
+    id: int
+    comment: str
+
+    class Config:
+        from_attributes = True
+"""
+***EXAMPLE***
+class MovieWithComments(BaseModel):
+    id: int
+    movie_title: str
+    comments: list[CommentSchema] = []  #<---- add this to whatever schema you want comments to be returned
+
+    class Config:
+        from_attributes = True
+"""
