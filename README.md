@@ -30,7 +30,7 @@ uv sync
 
 ### 3. Populate the database
 
-Download the dataset CSV from Kaggle and place it in the project root, then run:
+Use the dataset in first_api/Cinatomy and populate your database:
 
 ```bash
 uv run python ingest.py
@@ -57,6 +57,7 @@ The API will be available at `http://127.0.0.1:8000`. Interactive documentation 
 | GET | `/api/v1/movies/id/{id}` | Get a single movie by id |
 | GET | `/api/v1/movies/title/{title}` | Get a movie by title |
 | GET | `/api/v1/movies/search` | Search with optional query parameters |
+| POST | `/api/v1/movies/{id}/comments` | Add a human comment to the specific movie  |
 
 ### Curated Endpoints
 
